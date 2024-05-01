@@ -1,10 +1,9 @@
 def Biggie_Size(number):
-    newList=[]
+
     for i in range(0,len(number),1):
         if number[i]>0:
             number[i]="big"
-        newList.append(number[i])
-    return newList    
+    return number
 
 print(Biggie_Size([-5,-2,3,4,5,6]))
 
@@ -12,12 +11,12 @@ print(Biggie_Size([-5,-2,3,4,5,6]))
 def Count_Positives(elements):
     count=0
 
-    for g in range(0,len(elements),1):
+    for g in range(len(elements)):
         if elements[g]>0:
             
             count+=1
 
-        elements[len(elements)-1]=count
+    elements[len(elements)-1]=count
 
     return elements
 
@@ -111,9 +110,15 @@ print(ultimate_analysis([37, 2, 1, -9]))
 
 
 def Reverse_List(num):
-    for i in range (len(num)-1,-1,-1):
+    start=0
+    end=len(num)-1
+    
+    while start<end:
+        num[start],num[end]=num[end],num[start]
+        start+=1
+        end-=1
+    print (num)
+    return num
 
-        print(num[i])
 
-
-Reverse_List([1,2,3,4,5])
+Reverse_List([3,1,2,6,5])
