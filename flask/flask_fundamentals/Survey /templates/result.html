@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='my_style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Submitted Information</h1>
+        <p><strong>Your Name:</strong> <span>{{ name }}</span></p>
+        <p><strong>Dojo Location:</strong> <span>{{ location }}</span></p>
+        <p><strong>Favorite Language:</strong> <span>{{ language }}</span></p>
+        <p><strong>Comment:</strong> <span>{{ comment }}</span></p>
+        <a href="/" class="btn btn-primary" id="btn2">Go Back</a>
+    </div>
+</body>
+</html>
