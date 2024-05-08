@@ -26,4 +26,8 @@ def destroy(request , number):
     return redirect ('/blogs')
 
 def json(request):
-    return JsonResponse({"title": "My first blog","content":" lorem , ipsum sit amet " ,"status": True})
+    var= {
+        "title": "My first blog",
+        "content": "lorem, ipusm sa sda wq eqw eqw eqw es ad as",
+    }
+    return JsonResponse(var)
