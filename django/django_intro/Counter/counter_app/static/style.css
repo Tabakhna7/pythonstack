@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.all-contents{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.all-contents h1{
+    margin-bottom: 20px;
+}
+
+.all-contents p{
+    font-size: 24px;
+}
+
+.all-contents button{
+    width: 150px;
+    height: 50px;
+    margin: 3%;
+    font-size: 20px
+}

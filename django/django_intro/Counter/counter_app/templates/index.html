@@ -5,30 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Counter</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-   
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">  
 </head>
 <body>
     <div class="all-contents">
 
         <h1>Counter</h1>
-        <p>{{counter}}times</p>
+        <p>{{request.session.counter}}times</p>
+
+        <h2>Number of visits</h2>
+        <p>{{request.session.visit}}</p>
     
        <form action="/destroy_session" method="post">
+            {%csrf_token%}
             <button>Reset</button>
        </form>
     
        <form action="/two" method="post">
+        {%csrf_token%}
         <button>increment By two</button>
        </form>
        
-       <form action="/increment" method="post">
-        <input type="number" name="num">
-        <button>Increment</button>
-    </form>    
 
+       <form action="incr-user" method="post">
+        {%csrf_token%}
+        <input type="text" name="user-input">
+        <button>increment by</button>
+       </form>
     </div>
-
-
+    
 </body>
 </html>
