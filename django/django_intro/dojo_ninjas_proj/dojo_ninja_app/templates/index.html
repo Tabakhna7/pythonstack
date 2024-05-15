@@ -54,6 +54,10 @@
         <ul>
             {% for dojo in dojos %}
                 <li>Ninjas at the {{ dojo.name }} Dojo
+                    <form action="{% url 'delete_dojo' dojo.id %}" method="POST" >
+                        {% csrf_token %}
+                        <button type="submit" id="Del">Delete</button>
+                    </form>
                     <ul>
                         {% for ninja in dojo.ninjas.all %}
                             <li>{{ ninja.first_name }} {{ ninja.last_name }}</li>
