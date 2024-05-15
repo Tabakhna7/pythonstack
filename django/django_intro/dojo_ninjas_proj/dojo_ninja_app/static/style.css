@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.form-cont{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 40px;
+}
+.unordered-li{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    
+}
+ul{
+    width: 400px;
+    font-size: 30px;
+    background-color: rgb(213, 197, 29);
+   
+}
+
+.form-cont input{
+    padding: 20px;
+    font-size: 20px;
+}
+
+.form-cont select {
+    width: 150x;
+    height: 20px;
+    font-size:20px;
+    height: 40px;
+
+
+}
+
+.form-cont button{
+    padding: 20px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: blue;
+}
+
+ul ul {
+    
+    padding-left: 40px;
+    background-color: lightgray;
+}
