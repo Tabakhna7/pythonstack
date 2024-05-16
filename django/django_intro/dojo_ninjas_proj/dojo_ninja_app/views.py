@@ -4,9 +4,6 @@ def index(request):
     data = {
         'dojos':Dojo.objects.all()
             }
-       
-
-    
     return render(request, "index.html" ,data)
 
 def add_dojo(request):
@@ -22,8 +19,6 @@ def add_ninja(request):
         first_name=request.POST["first_name"],
         last_name=request.POST["last_name"],
         dojo=selected
-         
-         
     )
     
     return redirect('/')
