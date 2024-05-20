@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Hello Cinema</title>
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+     <h1>Movies</h1>
+     <div class="container">
+          <div class="cards">
+               {% for movie in Movies %}
+               <div class="card">
+                    <h4><strong>{{ movie.title }}</strong></h4>
+                    <img src="{{ movie.url_Image }}" width="200px" height="200px" alt="{{ movie.title }}">
+                    <p><strong>Description:</strong> {{ movie.description }}</p>
+                    <span><strong>Duration:</strong> {{ movie.duration }} minutes</span>
+                    <p><strong>Actors:</strong></p>
+                    {% for actor in movie.act.all %}
+                    <span>{{ actor.firstName }} {{ actor.lastName }} |</span>
+                    {% endfor %}
+                    <p><strong>Genre:</strong></p>
+                    {% for genre in movie.genre.all %}
+                    <span>{{ genre.categoryGenre }} |</span>
+                    {% endfor %}
+               </div>
+               {% endfor %}
+          </div>
+          <hr>
+          <table>
+               <tr>
+                    <th>Actor</th>
+                    <th>Number of Movies</th>
+               </tr>
+               {% for actor in Actors %}
+               <tr>
+                    <td>{{ actor.firstName }} {{ actor.lastName }}</td>
+                    <td>{{ actor.actor_in_movie.all|length }}</td>
+               </tr>
+               {% endfor %}
+          </table>
+     </div>
+</body>
+</html>

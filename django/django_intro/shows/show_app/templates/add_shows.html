@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>TV Shows</title>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'index' %}">Go Back</a>
+        <h1>Add A New Show</h1>
+        <form action="{% url 'submit_show' %}" method="post">
+            {% csrf_token %}
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+            <label for="network">Network</label>
+            <input type="text" name="network" id="network">
+            <label for="release_date">Release Date</label>
+            <input type="date" name="release_date" id="release_date">
+            <label for="desc">Description</label>
+            <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -6,7 +6,7 @@ def index(request):
     return render(request, "index.html", Data)
 
 def add(request):
-   
+    if request.method == "POST":
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         email = request.POST['Email']
