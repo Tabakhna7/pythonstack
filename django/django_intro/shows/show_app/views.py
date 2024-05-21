@@ -1,42 +1,73 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .models import Show
+from django.contrib import messages
+
+def red(request):
+    return redirect('/shows/')
 
 def index(request):
-    data = {
-        "shows": Show.objects.all()
+    context = {
+        "shows": Show.objects.all(),
     }
-    return render(request, "index.html", data)
+    return render(request, "index.html", context)
 
-def add_show(request):
+def new(request):
     return render(request, "add_shows.html")
 
-def submit_show(request):
-    Show.objects.create(
-        title=request.POST['title'],
-        network=request.POST['network'],
-        release_date=request.POST['release_date'],
-        desc=request.POST['desc']
-    )
-    return redirect("/shows/")
+def add(request):
+    if request.method == "POST":
+        title = request.POST.get('title', '')
+        network = request.POST.get('network', '')
+        release_date = request.POST.get('release_date', '')
+        desc = request.POST.get('desc', '')
 
-def display_show(request, x):
-    show = get_object_or_404(Show, id=x)
-    return render(request, "tv_shows.html", {'show': show})
+        errors = Show.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('shows/new')
+        else:
+            obj_x = Show.objects.create(title=title, network=network, release_date=release_date, desc=desc)
+            messages.success(request, "Show successfully added")
+            return redirect(f"shows/{obj_x.id}")
+    return redirect('/shows/new')
 
-def edit_show(request, x):
-    show = get_object_or_404(Show, id=x)
-    return render(request, "edit.html", {'show': show})
-
-def submit_edit(request, x):
-    show = get_object_or_404(Show, id=x)
-    show.title = request.POST['title']
-    show.network = request.POST['network']
-    show.release_date = request.POST['release_date']
-    show.desc = request.POST['description']
-    show.save()
-    return redirect("/shows/")
-    
-def destroy(request, x):
-    show = get_object_or_404(Show, id=x)
+def delete(request, id):
+    show = Show.objects.get(id=id)
     show.delete()
     return redirect('/shows/')
+
+def show(request, id):
+    data = {
+        "show": Show.objects.get(id=id)
+    }
+    return render(request, "show.html", data)
+
+def edit(request, id):
+    data = {
+        "show": Show.objects.get(id=id)
+    }
+    return render(request, 'edit.html', data)
+
+def update(request, id):
+    if request.method == "POST":
+        title = request.POST.get('title', '')
+        network = request.POST.get('network', '')
+        release_date = request.POST.get('release_date', '')
+        desc = request.POST.get('desc', '')
+
+        errors = Show.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect(f'/shows/{id}/edit')
+        else:
+            edit_show = Show.objects.get(id=id)
+            edit_show.title = title
+            edit_show.network = network
+            edit_show.desc = desc
+            edit_show.release_date = release_date
+            edit_show.save()
+            messages.success(request, "Show successfully updated")
+            return redirect('/')
+    return redirect(f'/shows/{id}/edit')

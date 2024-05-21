@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     <div class="wrapper">
         <i class="medium material-icons">live_tv</i>
         <h1>Edit Show # {{ show.id }}</h1>
-        <form action="{% url 'submit_edit' show.id %}" method="POST" class="col s12">
+        <form action="/update/{{show.id}}" method="POST" class="col s12">
             {% csrf_token %}
             <div class="row">
                 <div class="input-field col s12">
@@ -39,7 +41,16 @@
             </div>
             <input type="submit" value="Update">
         </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <a class="link" href="/shows/{{show.id}}">Go to Show!</a>
     </div>
-    <a href="{% url 'display_show' show.id %}">Go to Show</a>
+    <a href="/shows/{{show.id}}">Go to Show</a>
 </body>
+
 </html>

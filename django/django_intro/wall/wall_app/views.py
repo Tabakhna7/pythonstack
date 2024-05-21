@@ -1,7 +1,8 @@
+from django.shortcuts import render
+
 from django.shortcuts import render, render,redirect
 from django.contrib import messages
-from .models import User,Message,Comment
-
+from .models import User, Message , Comment
 import bcrypt 
 
 def index(request):
@@ -45,10 +46,18 @@ def success(request):
         return redirect('/')
 
     context={
-        'usr':User.objects.get(id=request.session['userid'])
+        'usr':User.objects.get(id=request.session['userid']),
+        'msgs':Message.objects.all(),
+        'comments':Comment.objects.all()
             }
-    return render(request,'success.html', context)
+    return render(request,'wall.html', context)
 
 def logout(request):
     request.session.clear()
     return redirect('/')
+
+def msg(request,id):
+    user_new=User.objects.get(id=id)
+    Message.objects.create(users=user_new , message=request.POST['message_posted'] )
+    return redirect('/success')
+    

@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="nav-links">
-        <a href="{% url 'index' %}">Go Back</a>
+        <a href="/shows/">Go Back</a>
     </div>
     <div class="wrapper">
         <h1>TV Show # {{ show.id }}</h1>
@@ -19,5 +19,5 @@
         <p>Release Date: {{ show.release_date }}</p>
         <p>Description: {{ show.desc }}</p>
         <p>Last Updated: {{ show.updated_at }}</p>
-        <p>
-            <a href="{% url 'edit_show'
+        <p><a href="{{show.id}}/destroy">Delete</a></p>
+         
