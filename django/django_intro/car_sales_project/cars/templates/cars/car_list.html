@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'user_dashboard' %}">User</a></li>
+            <li><a href="{% url 'admin_dashboard' %}">Admin</a></li>
+            <li><a href="#">FAQs</a></li>
+        </ul>
+    </nav>
+    <div class="background"></div> <!-- Background image -->
+    <div class="slider">
+        <img src="{% static 'images/car1.jpeg' %}" alt="Car 1">
+        <img src="{% static 'images/car3.jpeg' %}" alt="Car 3">
+        <img src="{% static 'images/car2.jpeg' %}" alt="Car 2">
+        <img src="{% static 'images/car4.jpeg' %}" alt="Car 4">
+        <img src="{% static 'images/car7.jpeg' %}" alt="Car 7">
+    </div>
+    <!-- Rest of the content -->
+</body>
+</html>

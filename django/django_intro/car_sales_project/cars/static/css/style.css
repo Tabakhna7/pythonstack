@@ -1,0 +1,70 @@
+/* Reset some default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Navbar styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Background image styles */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Slider styles */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.slider img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Initially hide all images */
+    transition: opacity 0.5s ease-in-out; /* Add a transition effect */
+}
+
+.slider img.active {
+    opacity: 1; /* Show the active image */
+}
